@@ -4,6 +4,6 @@
 cmake_minimum_required (VERSION 3.8)
 
 # Add source to this project's executable.
-add_executable (Sharp "Sharp.cpp" "Sharp.h")
+add_executable (Sharp "Sharp.cpp"  "Parser.cpp" "Parser.h" "Scanner.h" "Scanner.cpp" "Token.h" "TokenType.h" "Token.cpp")
 
 # TODO: Add tests and install targets if needed.

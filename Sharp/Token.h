@@ -24,7 +24,6 @@ public:
     friend std::ostream& operator<<(std::ostream& os, Token& token);
 private:
     TokenType type;
-    std::string text;
     Literal literal;
     int line;
     int column;

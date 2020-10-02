@@ -13,7 +13,7 @@ int main()
         << "int main(void)" << std::endl
         << "{" << std::endl
         << "    std::cout << \"Hello World!\" << std::endl;" << std::endl
-        << "    return 0;" << std::endl
+        << "    return 0.125;" << std::endl
         << "}" << std::endl;
     try 
     {

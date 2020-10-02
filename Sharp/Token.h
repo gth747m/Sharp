@@ -6,27 +6,25 @@
 
 #include "TokenType.h"
 
-using Literal = std::variant<int, float, std::string>;
+using Literal = std::variant<int, int64_t, float, double, std::string>;
 
 class Token
 {
 public:
     Token(
         TokenType&& type,
-        std::string&& lexeme,
         Literal literal,
         int line,
         int column);
     virtual ~Token();
     TokenType GetType() const;
-    std::string GetLexeme() const;
     Literal GetLiteral() const;
     int GetLine() const;
     int GetColumn() const;
     friend std::ostream& operator<<(std::ostream& os, Token& token);
 private:
     TokenType type;
-    std::string lexeme;
+    std::string text;
     Literal literal;
     int line;
     int column;

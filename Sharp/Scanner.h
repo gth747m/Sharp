@@ -24,8 +24,6 @@ private:
     // Methods
     bool Match(char c);
     char Advance();
-    char Peek();
-    char PeekAgain();
     void AddToken(TokenType&& token);
     void AddToken(TokenType&& token, int lineStart, int columnStart);
     void AddToken(TokenType&& token, Literal literal);

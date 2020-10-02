@@ -66,28 +66,6 @@ char Scanner::Advance()
     return this->stream.get();
 }
 
-char Scanner::Peek()
-{
-    if (this->stream.eof()) 
-        return 0;
-    return this->stream.peek();
-}
-
-char Scanner::PeekAgain()
-{
-    if (this->stream.eof()) 
-        return 0;
-    char c = this->stream.get();
-    if (this->stream.eof())
-    {
-        this->PutBack(c);
-        return 0;
-    }
-    char nextChar = this->stream.peek();
-    this->PutBack(c);
-    return nextChar;
-}
-
 void Scanner::AddToken(TokenType&& token)
 {
     this->AddToken(std::move(token), std::move(Literal()));
@@ -101,13 +79,13 @@ void Scanner::AddToken(TokenType&& token, int lineStart, int columnStart)
 void Scanner::AddToken(TokenType&& token, Literal literal)
 {
     this->tokens.push_back(Token(std::move(token), 
-        this->currString.str(), literal, line, column));
+        literal, line, column));
 }
 
 void Scanner::AddToken(TokenType&& token, Literal literal, int lineStart, int columnStart)
 {
     this->tokens.push_back(Token(std::move(token), 
-        this->currString.str(), literal, lineStart, columnStart));
+        literal, lineStart, columnStart));
 }
 
 void Scanner::PutBack(char c)
@@ -140,7 +118,8 @@ void Scanner::ScanIdentifier(char c)
     auto it = Keywords.find(ssUpper.str().c_str());
     if (it == Keywords.end())
     {
-        this->AddToken(TokenType::IDENTIFIER, ssOrig.str().c_str(), lineStart, columnStart);
+        this->AddToken(TokenType::IDENTIFIER, 
+            ssOrig.str().c_str(), lineStart, columnStart);
     }
     else 
     {
@@ -161,7 +140,8 @@ void Scanner::ScanNumber(char c)
         currChar = Advance();
     }
     this->PutBack(currChar);
-    this->AddToken(TokenType::NUMBER, Literal(ss.str().c_str()), lineStart, columnStart);
+    this->AddToken(TokenType::NUMBER, 
+        Literal(ss.str().c_str()), lineStart, columnStart);
 }
 
 void Scanner::ScanString()
@@ -180,7 +160,8 @@ void Scanner::ScanString()
     {
         throw ScanException("Unterminated string.", lineStart, columnStart);
     }
-    this->AddToken(TokenType::STRING, Literal(ss.str().c_str()), lineStart, columnStart);
+    this->AddToken(TokenType::STRING, 
+        Literal(ss.str().c_str()), lineStart, columnStart);
 }
 
 void Scanner::ScanToken()
@@ -242,7 +223,7 @@ void Scanner::ScanToken()
     case ('/'):
         if (Match('/')) 
         {
-            while ((Peek() != '\n' && !this->stream.eof())) 
+            while ((this->stream.peek() != '\n' && !this->stream.eof())) 
             {
                 this->Advance();
             }

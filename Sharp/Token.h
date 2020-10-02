@@ -15,16 +15,19 @@ public:
         TokenType&& type,
         std::string&& lexeme,
         Literal literal,
-        int line);
+        int line,
+        int column);
     virtual ~Token();
     TokenType GetType() const;
     std::string GetLexeme() const;
     Literal GetLiteral() const;
     int GetLine() const;
+    int GetColumn() const;
     friend std::ostream& operator<<(std::ostream& os, Token& token);
 private:
     TokenType type;
     std::string lexeme;
     Literal literal;
     int line;
+    int column;
 };

@@ -2,7 +2,10 @@
 
 #include <cctype>
 #include <exception>
+#include <iostream>
 #include <map>
+
+#include "ScanException.h"
 
 static const std::map<const char *, TokenType> Keywords = 
     {
@@ -21,12 +24,14 @@ static const std::map<const char *, TokenType> Keywords =
         {"TRUE", TokenType::TRUE},
         {"VAR", TokenType::VAR},
         {"WHILE", TokenType::WHILE},
+        {"VOID", TokenType::VOID}
     };
 
 Scanner::Scanner(std::istream& stream) :
     currChar(0),
     currString(),
-    line(0),
+    line(1),
+    column(0),
     stream(stream),
     tokens(std::vector<Token>())
 {
@@ -36,15 +41,11 @@ Scanner::~Scanner()
 {
 }
 
-std::vector<Token> Scanner::ScanTokens(std::istream& stream)
+std::vector<Token> Scanner::GetTokens(std::istream& stream)
 {
     Scanner scanner = Scanner(stream);
-    return scanner.GetTokens();
-}
-
-std::vector<Token> Scanner::GetTokens() const
-{
-    return this->tokens;
+    scanner.Scan();
+    return scanner.tokens;
 }
 
 bool Scanner::Match(char c)
@@ -61,6 +62,7 @@ char Scanner::Advance()
 {
     if (this->stream.eof()) 
         return 0;
+    this->column++;
     return this->stream.get();
 }
 
@@ -78,11 +80,11 @@ char Scanner::PeekAgain()
     char c = this->stream.get();
     if (this->stream.eof())
     {
-        this->stream.putback(c);
+        this->PutBack(c);
         return 0;
     }
     char nextChar = this->stream.peek();
-    this->stream.putback(c);
+    this->PutBack(c);
     return nextChar;
 }
 
@@ -91,22 +93,94 @@ void Scanner::AddToken(TokenType&& token)
     this->AddToken(std::move(token), std::move(Literal()));
 }
 
+void Scanner::AddToken(TokenType&& token, int lineStart, int columnStart)
+{
+    this->AddToken(std::move(token), std::move(Literal()), lineStart, columnStart);
+}
+
 void Scanner::AddToken(TokenType&& token, Literal literal)
 {
     this->tokens.push_back(Token(std::move(token), 
-        this->currString.str(), literal, line));
+        this->currString.str(), literal, line, column));
 }
 
-void Scanner::ScanIdentifier()
+void Scanner::AddToken(TokenType&& token, Literal literal, int lineStart, int columnStart)
 {
+    this->tokens.push_back(Token(std::move(token), 
+        this->currString.str(), literal, lineStart, columnStart));
 }
 
-void Scanner::ScanNumber()
+void Scanner::PutBack(char c)
 {
+    this->stream.putback(c);
+    this->column--;
+}
+
+void Scanner::Scan()
+{
+    while (!this->stream.eof()) {
+        this->ScanToken();
+    }
+}
+
+void Scanner::ScanIdentifier(char c)
+{
+    char currChar = c;
+    int lineStart = this->line;
+    int columnStart = this->column;
+    std::stringstream ssOrig;
+    std::stringstream ssUpper;
+    while (isalnum(currChar) || currChar == '_')
+    {
+        ssOrig << currChar;
+        ssUpper << toupper(currChar);
+        currChar = Advance();
+    }
+    this->PutBack(currChar);
+    auto it = Keywords.find(ssUpper.str().c_str());
+    if (it == Keywords.end())
+    {
+        this->AddToken(TokenType::IDENTIFIER, ssOrig.str().c_str(), lineStart, columnStart);
+    }
+    else 
+    {
+        TokenType type = it->second;
+        this->AddToken(std::move(type), lineStart, columnStart);
+    }
+}
+
+void Scanner::ScanNumber(char c)
+{
+    char currChar = c;
+    int lineStart = this->line;
+    int columnStart = this->column;
+    std::stringstream ss;
+    while (isdigit(currChar) || currChar == ',' || currChar == '.')
+    {
+        ss << currChar;
+        currChar = Advance();
+    }
+    this->PutBack(currChar);
+    this->AddToken(TokenType::NUMBER, Literal(ss.str().c_str()), lineStart, columnStart);
 }
 
 void Scanner::ScanString()
 {
+    int lineStart = this->line;
+    int columnStart = this->column;
+    char nextChar = this->stream.peek();
+    char currChar = this->Advance();
+    std::stringstream ss;
+    while (currChar != '"' && !this->stream.eof())
+    {
+        ss << currChar;
+        currChar = this->Advance();
+    }
+    if (this->stream.eof())
+    {
+        throw ScanException("Unterminated string.", lineStart, columnStart);
+    }
+    this->AddToken(TokenType::STRING, Literal(ss.str().c_str()), lineStart, columnStart);
 }
 
 void Scanner::ScanToken()
@@ -136,6 +210,12 @@ void Scanner::ScanToken()
         break;
     case ('-'):
         this->AddToken(TokenType::MINUS);
+        break;
+    case ('#'):
+        this->AddToken(TokenType::HASH);
+        break;
+    case (':'):
+        this->AddToken(TokenType::COLON);
         break;
     case (';'):
         this->AddToken(TokenType::SEMICOLON);
@@ -173,10 +253,12 @@ void Scanner::ScanToken()
         }
         break;
     case (' '):
+        break;
     case ('\r'):
     case ('\n'):
     case ('\t'):
         this->line++;
+        this->column = 0;
         break;
     case ('"'):
         this->ScanString();
@@ -184,16 +266,19 @@ void Scanner::ScanToken()
     default:
         if (isdigit(c))
         {
-            this->ScanNumber();
+            this->ScanNumber(c);
         }
-        else if (isalpha(c))
+        else if (isalpha(c) || c == '_')
         {
-            this->ScanIdentifier();
+            this->ScanIdentifier(c);
         }
         else 
         {
-            std::string msg = "Unexpected character '" + c;
-            throw std::runtime_error(msg + "'");
+            if (this->stream.eof())
+                return;
+            std::stringstream ss;
+            ss << "Unexpected character '" << c << "'" << std::endl;
+            throw ScanException(ss.str(), this->line, this->column);
         }
     }
 }

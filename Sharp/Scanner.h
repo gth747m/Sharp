@@ -9,8 +9,7 @@
 class Scanner
 {
 public:
-    static std::vector<Token> ScanTokens(std::istream& stream);
-    std::vector<Token> GetTokens() const;
+    static std::vector<Token> GetTokens(std::istream& stream);
 protected:
     Scanner(std::istream& stream);
     virtual ~Scanner();
@@ -19,6 +18,7 @@ private:
     char currChar;
     std::stringstream currString;
     int line;
+    int column;
     std::istream& stream;
     std::vector<Token> tokens;
     // Methods
@@ -27,9 +27,13 @@ private:
     char Peek();
     char PeekAgain();
     void AddToken(TokenType&& token);
+    void AddToken(TokenType&& token, int lineStart, int columnStart);
     void AddToken(TokenType&& token, Literal literal);
-    void ScanIdentifier();
-    void ScanNumber();
+    void AddToken(TokenType&& token, Literal literal, int lineStart, int columnStart);
+    void PutBack(char c);
+    void Scan();
+    void ScanIdentifier(char c);
+    void ScanNumber(char c);
     void ScanString();
     void ScanToken();
 };

@@ -39,6 +39,10 @@ enum class TokenType : int
     /// </summary>
     PLUS, 
     /// <summary>
+    /// Colon (:)
+    /// </summary>
+    COLON, 
+    /// <summary>
     /// Semicolon (;)
     /// </summary>
     SEMICOLON, 
@@ -50,6 +54,10 @@ enum class TokenType : int
     /// Star (*)
     /// </summary>
     STAR,
+    /// <summary>
+    /// Hash (#)
+    /// </summary>
+    HASH,
 
     // Comparison tokens
 
@@ -167,6 +175,10 @@ enum class TokenType : int
     /// while
     /// </summary>
     WHILE,
+    /// <summary>
+    /// void
+    /// </summary>
+    VOID
 };
 
 const std::map<TokenType, const char*> TokenTypeNameMap = {
@@ -178,9 +190,11 @@ const std::map<TokenType, const char*> TokenTypeNameMap = {
     {TokenType::DOT, "DOT"},
     {TokenType::MINUS, "MINUS"},
     {TokenType::PLUS, "PLUS"},
+    {TokenType::COLON, "COLON"},
     {TokenType::SEMICOLON, "SEMICOLON"},
     {TokenType::SLASH, "SLASH"},
     {TokenType::STAR, "STAR"},
+    {TokenType::HASH, "HASH"},
     {TokenType::BANG, "BANG"},
     {TokenType::BANG_EQUAL, "BANG_EQUAL"},
     {TokenType::EQUAL, "EQUAL"},

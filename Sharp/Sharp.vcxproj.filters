@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\gth74\source\repos\gth747m\Sharp\Sharp\Sharp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\gth74\source\repos\gth747m\Sharp\Sharp\Literal.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\gth74\source\repos\gth747m\Sharp\Sharp\ScanException.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\gth74\source\repos\gth747m\Sharp\Sharp\Scanner.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\gth74\source\repos\gth747m\Sharp\Sharp\Token.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\gth74\source\repos\gth747m\Sharp\Sharp\Expressions\AssignmentExpression.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\gth74\source\repos\gth747m\Sharp\Sharp\Expressions\BinaryExpression.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\gth74\source\repos\gth747m\Sharp\Sharp\Expressions\CallExpression.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\gth74\source\repos\gth747m\Sharp\Sharp\Expressions\Expression.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\gth74\source\repos\gth747m\Sharp\Sharp\Expressions\GroupExpression.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\gth74\source\repos\gth747m\Sharp\Sharp\Expressions\LiteralExpression.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\gth74\source\repos\gth747m\Sharp\Sharp\Expressions\LogicalExpression.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\gth74\source\repos\gth747m\Sharp\Sharp\Expressions\UnaryExpression.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\gth74\source\repos\gth747m\Sharp\Sharp\Expressions\VariableExpression.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\gth74\source\repos\gth747m\Sharp\Sharp\Statements\Statement.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Users\gth74\source\repos\gth747m\Sharp\Sharp\Parser.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\gth74\source\repos\gth747m\Sharp\Sharp\Statements\Statement.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\gth74\source\repos\gth747m\Sharp\Sharp\Expressions\AssignmentExpression.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\gth74\source\repos\gth747m\Sharp\Sharp\Expressions\BinaryExpression.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\gth74\source\repos\gth747m\Sharp\Sharp\Expressions\CallExpression.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\gth74\source\repos\gth747m\Sharp\Sharp\Expressions\Expression.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\gth74\source\repos\gth747m\Sharp\Sharp\Expressions\GroupExpression.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\gth74\source\repos\gth747m\Sharp\Sharp\Expressions\LiteralExpression.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\gth74\source\repos\gth747m\Sharp\Sharp\Expressions\LogicalExpression.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\gth74\source\repos\gth747m\Sharp\Sharp\Expressions\UnaryExpression.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\gth74\source\repos\gth747m\Sharp\Sharp\Expressions\VariableExpression.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\gth74\source\repos\gth747m\Sharp\Sharp\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{EB0777DE-C4DC-3D7D-A7AE-BEF57729BBC1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{EABF0324-EAE9-363F-8834-7F7BC13BADC1}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

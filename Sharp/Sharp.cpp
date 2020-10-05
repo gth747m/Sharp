@@ -2,18 +2,18 @@
 #include <sstream>
 #include <vector>
 
-#include "ScanException.h"
-#include "Scanner.h"
+#include "ScanException.hpp"
+#include "Scanner.hpp"
 
 int main()
 {
     std::stringstream ss;
-    ss << "#include <iostream>" << std::endl
+    ss << "#include \"stdio.h\"" << std::endl
         << std::endl
         << "int main(void)" << std::endl
         << "{" << std::endl
-        << "    std::cout << \"Hello World!\" << std::endl;" << std::endl
-        << "    return 0.125;" << std::endl
+        << "    printf(\"Hello World!\\n\");" << std::endl
+        << "    return 0;" << std::endl
         << "}" << std::endl;
     try 
     {

@@ -1,11 +1,11 @@
-#include "Scanner.h"
+#include "Scanner.hpp"
 
 #include <cctype>
 #include <exception>
 #include <iostream>
 #include <map>
 
-#include "ScanException.h"
+#include "ScanException.hpp"
 
 static const std::map<const char *, TokenType> Keywords = 
     {
@@ -28,8 +28,6 @@ static const std::map<const char *, TokenType> Keywords =
     };
 
 Scanner::Scanner(std::istream& stream) :
-    currChar(0),
-    currString(),
     line(1),
     column(0),
     stream(stream),
@@ -63,7 +61,7 @@ char Scanner::Advance()
     if (this->stream.eof()) 
         return 0;
     this->column++;
-    return this->stream.get();
+    return (char)this->stream.get();
 }
 
 void Scanner::AddToken(TokenType&& token)
@@ -148,7 +146,6 @@ void Scanner::ScanString()
 {
     int lineStart = this->line;
     int columnStart = this->column;
-    char nextChar = this->stream.peek();
     char currChar = this->Advance();
     std::stringstream ss;
     while (currChar != '"' && !this->stream.eof())

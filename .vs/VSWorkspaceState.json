@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Sharp"
+    "\\Sharp",
+    "\\Sharp\\Expressions"
   ],
-  "SelectedNode": "\\Sharp\\Token.cpp",
+  "SelectedNode": "\\Sharp\\CMakeLists.txt",
   "PreviewInSolutionExplorer": false
 }

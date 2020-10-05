@@ -1,8 +1,8 @@
-#include "Parser.h"
+#include "Parser.hpp"
 
-Parser::Parser() :
+Parser::Parser(std::vector<Token>&& tokens) :
     currentLine(0),
-    tokens(std::vector<Token>())
+    tokens(std::move(tokens))
 {
 }
 

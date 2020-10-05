@@ -34,3 +34,4 @@
 # Output directory
 out/*
 .vs/*
+x64/*

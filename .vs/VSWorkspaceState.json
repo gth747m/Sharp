@@ -2,8 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\Sharp",
-    "\\Sharp\\Expressions"
+    "\\Sharp\\Sharp.dir\\Debug"
   ],
-  "SelectedNode": "\\Sharp\\CMakeLists.txt",
+  "SelectedNode": "\\Sharp\\Scanner.hpp",
   "PreviewInSolutionExplorer": false
 }

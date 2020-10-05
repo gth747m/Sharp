@@ -15,7 +15,7 @@ public:
         Literal literal,
         int line,
         int column);
-    virtual ~Token();
+    virtual ~Token() = default;
     TokenType GetType() const;
     Literal GetLiteral() const;
     int GetLine() const;

@@ -12,7 +12,7 @@ public:
     static std::vector<Token> GetTokens(std::istream& stream);
 protected:
     Scanner(std::istream& stream);
-    virtual ~Scanner();
+    virtual ~Scanner() = default;
 private:
     // Member Variables
     int line;

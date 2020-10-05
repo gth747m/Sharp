@@ -8,7 +8,7 @@ class Parser
 {
 public:
     Parser(std::vector<Token>&& tokens);
-    virtual ~Parser();
+    virtual ~Parser() = default;
 private:
     std::vector<Token> tokens;
     int currentLine;

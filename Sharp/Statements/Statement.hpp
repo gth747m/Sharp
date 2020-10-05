@@ -7,4 +7,4 @@ public:
     virtual ~Statement() = default;
 protected:
 private:
-}
+};

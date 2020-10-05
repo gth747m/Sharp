@@ -35,10 +35,6 @@ Scanner::Scanner(std::istream& stream) :
 {
 }
 
-Scanner::~Scanner()
-{
-}
-
 std::vector<Token> Scanner::GetTokens(std::istream& stream)
 {
     Scanner scanner = Scanner(stream);

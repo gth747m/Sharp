@@ -25,7 +25,7 @@ add_executable (Sharp
 	"Parser.hpp" 
 	"ScanException.cpp" 
 	"Scanner.cpp" 
-	"Token.cpp" "Statements/Statement.hpp")
+	"Token.cpp" "Statements/Statement.hpp" "Statements/BlockStatement.hpp" "Statements/BlockStatement.cpp" "Statements/ExpressionStatement.hpp" "Statements/ExpressionStatement.cpp" "Statements/FunctionStatement.hpp" "Statements/FunctionStatement.cpp" "Statements/IfStatement.hpp" "Statements/IfStatement.cpp" "Statements/VariableStatement.hpp" "Statements/WhileStatement.hpp" "Statements/WhileStatement.cpp")
 
 add_subdirectory ("Expressions")
 add_subdirectory ("Statements")

@@ -12,10 +12,6 @@ Token::Token(
 {
 }
 
-Token::~Token()
-{
-}
-
 TokenType Token::GetType() const
 {
     return this->type;

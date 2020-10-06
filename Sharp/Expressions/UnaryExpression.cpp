@@ -1,6 +1,6 @@
 #include "UnaryExpression.hpp"
 
-UnaryExpression::UnaryExpression(Token&& optor, Expression&& right) :
+UnaryExpression::UnaryExpression(Token&& optor, std::unique_ptr<Expression>&& right) :
     optor(std::move(optor)),
     right(std::move(right))
 {

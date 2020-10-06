@@ -2,7 +2,7 @@
 
 #include <utility>
 
-IfStatement::IfStatement(Expression& condition, Statement&& thenBranch, Statement&& elseBranch) :
+IfStatement::IfStatement(std::unique_ptr<Expression>& condition, std::unique_ptr<Statement>&& thenBranch, std::unique_ptr<Statement>&& elseBranch) :
     condition(std::move(condition)),
     thenBranch(std::move(thenBranch)),
     elseBranch(std::move(elseBranch))

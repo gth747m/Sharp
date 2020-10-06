@@ -1,8 +1,9 @@
 #include "ExpressionStatement.hpp"
 
+#include <memory>
 #include <utility>
 
-ExpressionStatement::ExpressionStatement(Expression&& expression) :
+ExpressionStatement::ExpressionStatement(std::unique_ptr<Expression>&& expression) :
     expression(std::move(expression))
 {
 }

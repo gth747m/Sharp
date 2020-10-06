@@ -1,5 +1,6 @@
 #pragma once
 
+#include <memory>
 #include <vector>
 
 #include "Expression.hpp"
@@ -8,11 +9,11 @@
 class CallExpression : public Expression
 {
 public:
-    CallExpression(Expression&& callee, Token&& paren, std::vector<Expression>&& args);
+    CallExpression(std::unique_ptr<Expression>&& callee, Token&& paren, std::vector<std::unique_ptr<Expression>>&& args);
     virtual ~CallExpression();
 protected:
 private:
-    Expression callee;
+    std::unique_ptr<Expression> callee;
     Token paren;
-    std::vector<Expression> args;
+    std::vector<std::unique_ptr<Expression>> args;
 };

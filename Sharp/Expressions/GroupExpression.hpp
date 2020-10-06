@@ -1,13 +1,15 @@
 #pragma once
 
+#include <memory>
+
 #include "Expression.hpp"
 
 class GroupExpression : public Expression
 {
 public:
-    GroupExpression(Expression&& expression);
+    GroupExpression(std::unique_ptr<Expression>&& expression);
     virtual ~GroupExpression();
 protected:
 private:
-    Expression expression;
+    std::unique_ptr<Expression> expression;
 };

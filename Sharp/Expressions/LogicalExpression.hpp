@@ -1,16 +1,18 @@
 #pragma once
 
+#include <memory>
+
 #include "Expression.hpp"
 #include "../Token.hpp"
 
 class LogicalExpression : public Expression
 {
 public:
-    LogicalExpression(Expression&& left, Token&& optor, Expression&& right);
+    LogicalExpression(std::unique_ptr<Expression>&& left, Token&& optor, std::unique_ptr<Expression>&& right);
     virtual ~LogicalExpression();
 protected:
 private:
-    Expression left;
+    std::unique_ptr<Expression> left;
     Token optor;
-    Expression right;
+    std::unique_ptr<Expression> right;
 };

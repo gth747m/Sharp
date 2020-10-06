@@ -4,6 +4,7 @@
 
 #include "ScanException.hpp"
 #include "Scanner.hpp"
+#include "Parser.hpp"
 
 int main()
 {
@@ -17,10 +18,14 @@ int main()
         << "}" << std::endl;
     try 
     {
+        std::stringstream ss2(ss.str());
         for (Token& token : Scanner::GetTokens(ss))
         {
             std::cout << token << std::endl;
         }
+        Parser parser = Parser(Scanner::GetTokens(ss2));
+        std::cout << "Found " << parser.Parse().size() 
+            << " statements" << std::endl;
     }
     catch (ScanException& ex)
     {

@@ -1,5 +1,6 @@
 #pragma once
 
+#include <memory>
 #include <vector>
 
 #include "Statement.hpp"
@@ -8,11 +9,11 @@
 class FunctionStatement : public Statement
 {
 public:
-    FunctionStatement(Token&& name, std::vector<Token>&& params, std::vector<Statement>&& body);
+    FunctionStatement(Token&& name, std::vector<Token>&& params, std::vector<std::unique_ptr<Statement>>&& body);
     virtual ~FunctionStatement() = default;
 protected:
 private:
     Token name;
     std::vector<Token> params;
-    std::vector<Statement> body;
+    std::vector<std::unique_ptr<Statement>> body;
 };

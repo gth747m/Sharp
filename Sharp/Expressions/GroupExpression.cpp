@@ -2,7 +2,7 @@
 
 #include <utility>
 
-GroupExpression::GroupExpression(Expression&& expression) :
+GroupExpression::GroupExpression(std::unique_ptr<Expression>&& expression) :
     expression(std::move(expression))
 {
 }

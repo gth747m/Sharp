@@ -22,10 +22,10 @@ endif()
 add_executable (Sharp 
 	"Sharp.cpp"  
 	"Literal.cpp" 
-	"Parser.hpp" 
+	"Parser.cpp" 
 	"ScanException.cpp" 
 	"Scanner.cpp" 
-	"Token.cpp" "Statements/Statement.hpp" "Statements/BlockStatement.hpp" "Statements/BlockStatement.cpp" "Statements/ExpressionStatement.hpp" "Statements/ExpressionStatement.cpp" "Statements/FunctionStatement.hpp" "Statements/FunctionStatement.cpp" "Statements/IfStatement.hpp" "Statements/IfStatement.cpp" "Statements/VariableStatement.hpp" "Statements/WhileStatement.hpp" "Statements/WhileStatement.cpp")
+	"Token.cpp")
 
 add_subdirectory ("Expressions")
 add_subdirectory ("Statements")

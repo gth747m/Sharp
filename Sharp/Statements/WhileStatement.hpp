@@ -1,15 +1,17 @@
 #pragma once
 
+#include <memory>
+
 #include "Statement.hpp"
 #include "../Expressions/Expression.hpp"
 
 class WhileStatement : public Statement
 {
 public:
-    WhileStatement(Expression&& condition, Statement&& body);
+    WhileStatement(std::unique_ptr<Expression>&& condition, std::unique_ptr<Statement>&& body);
     virtual ~WhileStatement() = default;
 protected:
 private:
-    Expression condition;
-    Statement body;
+    std::unique_ptr<Expression> condition;
+    std::unique_ptr<Statement> body;
 };

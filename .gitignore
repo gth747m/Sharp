@@ -35,12 +35,13 @@
 *.vcxproj
 *.vcxproj.filters
 
-# Output directory
+# Output
 out/*
 .vs/*
 x64/*
 Sharp/Sharp.dir
 Sharp/Debug
+Sharp/Sharp
 
 # Make
 Makefile

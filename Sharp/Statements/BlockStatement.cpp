@@ -4,3 +4,8 @@ BlockStatement::BlockStatement(std::vector<std::unique_ptr<Statement>>&& stateme
     statements(std::move(statements))
 {
 }
+
+void BlockStatement::Print(std::ostream& os)
+{
+    os << "";
+}

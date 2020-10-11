@@ -12,6 +12,7 @@ public:
     FunctionStatement(Token&& name, std::vector<Token>&& params, std::vector<std::unique_ptr<Statement>>&& body);
     virtual ~FunctionStatement() = default;
 protected:
+    virtual void Print(std::ostream& os);
 private:
     Token name;
     std::vector<Token> params;

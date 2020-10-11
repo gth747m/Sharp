@@ -1,5 +1,8 @@
 #include "Parser.hpp"
 
+#include <sstream>
+
+#include "ParseException.hpp"
 #include "Statements/BlockStatement.hpp"
 #include "Statements/ExpressionStatement.hpp"
 #include "Statements/FunctionStatement.hpp"
@@ -23,7 +26,116 @@ std::vector<std::unique_ptr<Statement>> Parser::Parse()
     return statements;
 }
 
+Token Parser::Consume(TokenType type)
+{
+    if ((this->current >= this->tokens.end()) || 
+        (this->current->GetType() != type))
+    {
+        std::stringstream msg;
+        msg << "Expected a '" << type << "' but found '"
+            << this->current->GetLiteral() << "'." << std::endl;
+        throw new ParseException(msg.str(), this->current->GetLine(),
+            this->current->GetColumn());
+    }
+    return *this->current++;
+}
+
+std::unique_ptr<Expression> Parser::ParseAddition()
+{
+    throw new std::exception();
+}
+
+std::unique_ptr<Expression> Parser::ParseAssignment()
+{
+    throw new std::exception();
+}
+
+std::unique_ptr<Expression> Parser::ParseCall()
+{
+    throw new std::exception();
+}
+
+std::unique_ptr<Expression> Parser::ParseComparison()
+{
+    throw new std::exception();
+}
+
+std::unique_ptr<Expression> Parser::ParseEquality()
+{
+    throw new std::exception();
+}
+
+std::unique_ptr<Expression> Parser::ParseExpression()
+{
+    return std::move(this->ParseAssignment());
+}
+
+std::unique_ptr<Expression> Parser::ParseMultiplication()
+{
+    throw new std::exception();
+}
+
+std::unique_ptr<Expression> Parser::ParseOr()
+{
+    throw new std::exception();
+}
+
+std::unique_ptr<Expression> Parser::ParsePrimary()
+{
+    throw new std::exception();
+}
+
+std::unique_ptr<Expression> Parser::ParseUnary()
+{
+    throw new std::exception();
+}
+
+std::unique_ptr<Statement> Parser::ParseBlock()
+{
+    throw new std::exception();
+}
+
 std::unique_ptr<Statement> Parser::ParseDeclaration()
+{
+    switch (this->current->GetType())
+    {
+    case (TokenType::INT):
+    case (TokenType::UINT):
+    case (TokenType::LONG):
+    case (TokenType::ULONG):
+    case (TokenType::FLOAT):
+    case (TokenType::DOUBLE):
+    case (TokenType::VAR):
+        return std::move(this->ParseVariable());
+        break;
+    case (TokenType::FUNCTION):
+        return std::move(this->ParseFunction());
+    default:
+        return std::move(this->ParseStatement());
+    }
+}
+
+std::unique_ptr<Statement> Parser::ParseExpressionStatement()
+{
+    throw new std::exception();
+}
+
+std::unique_ptr<Statement> Parser::ParseFor()
+{
+    throw new std::exception();
+}
+
+std::unique_ptr<Statement> Parser::ParseFunction()
+{
+    throw new std::exception();
+}
+
+std::unique_ptr<Statement> Parser::ParseIf()
+{
+    throw new std::exception();
+}
+
+std::unique_ptr<Statement> Parser::ParseStatement()
 {
     switch (this->current->GetType())
     {
@@ -44,43 +156,17 @@ std::unique_ptr<Statement> Parser::ParseDeclaration()
     }
 }
 
-std::unique_ptr<Statement> Parser::ParseStatement()
-{
-    this->current++;
-    return std::move(std::make_unique<Statement>());
-}
-
-std::unique_ptr<Statement> Parser::ParseFor()
-{
-    this->current++;
-    return std::move(std::make_unique<Statement>());
-    //return std::move(std::make_unique<WhileStatement>());
-}
-
-std::unique_ptr<Statement> Parser::ParseIf()
-{
-    this->current++;
-    return std::move(std::make_unique<Statement>());
-    //return std::move(std::make_unique<IfStatement>());
-}
-
 std::unique_ptr<Statement> Parser::ParseWhile()
 {
-    this->current++;
-    return std::move(std::make_unique<Statement>());
-    //return std::move(std::make_unique<WhileStatement>());
+    throw new std::exception();
 }
 
-std::unique_ptr<Statement> Parser::ParseBlock()
+std::unique_ptr<Statement> Parser::ParseVariable()
 {
-    this->current++;
-    return std::move(std::make_unique<Statement>());
-    //return std::move(std::make_unique<BlockStatement>());
-}
-
-std::unique_ptr<Statement> Parser::ParseExpressionStatement()
-{
-    this->current++;
-    return std::move(std::make_unique<Statement>());
-    //return std::move(std::make_unique<ExpressionStatement>());
+    Token type = this->Consume(TokenType::VARIABLE_TYPE);
+    Token name = this->Consume(TokenType::IDENTIFIER);
+    this->Consume(TokenType::EQUAL);
+    std::unique_ptr<Expression> init = this->ParseExpression();
+    this->Consume(TokenType::SEMICOLON);
+    return std::make_unique<VariableStatement>(type, name, std::move(init));
 }

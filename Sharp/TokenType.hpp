@@ -168,13 +168,44 @@ enum class TokenType : int
     /// </summary>
     TRUE, 
     /// <summary>
-    /// var
-    /// </summary>
-    VAR, 
-    /// <summary>
     /// while
     /// </summary>
     WHILE,
+
+    // Variables
+
+    /// <summary>
+    /// variable type
+    /// </summary>
+    VARIABLE_TYPE,
+    /// <summary>
+    /// int
+    /// </summary>
+    INT,
+    /// <summary>
+    /// unsigned int
+    /// </summary>
+    UINT,
+    /// <summary>
+    /// long
+    /// </summary>
+    LONG,
+    /// <summary>
+    /// unsigned long
+    /// </summary>
+    ULONG,
+    /// <summary>
+    /// float
+    /// </summary>
+    FLOAT,
+    /// <summary>
+    /// double
+    /// </summary>
+    DOUBLE,
+    /// <summary>
+    /// var
+    /// </summary>
+    VAR, 
     /// <summary>
     /// void
     /// </summary>
@@ -220,8 +251,16 @@ const std::map<TokenType, const char*> TokenTypeNameMap = {
     {TokenType::SUPER, "SUPER"},
     {TokenType::THIS, "THIS"},
     {TokenType::TRUE, "TRUE"},
-    {TokenType::VAR, "VAR"},
     {TokenType::WHILE, "WHILE"},
+    {TokenType::VARIABLE_TYPE, "VARIABLE_TYPE"},
+    {TokenType::INT, "INT"},
+    {TokenType::UINT, "UINT"},
+    {TokenType::LONG, "LONG"},
+    {TokenType::ULONG, "ULONG"},
+    {TokenType::FLOAT, "FLOAT"},
+    {TokenType::DOUBLE, "DOUBLE"},
+    {TokenType::VAR, "VAR"},
+    {TokenType::VOID, "VOID"},
 };
 
 inline std::ostream& operator<<(

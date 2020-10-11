@@ -6,3 +6,8 @@ FunctionStatement::FunctionStatement(Token&& name, std::vector<Token>&& params, 
     body(std::move(body))
 {
 }
+
+void FunctionStatement::Print(std::ostream& os)
+{
+    os << "";
+}

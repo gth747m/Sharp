@@ -8,3 +8,8 @@ IfStatement::IfStatement(std::unique_ptr<Expression>& condition, std::unique_ptr
     elseBranch(std::move(elseBranch))
 {
 }
+
+void IfStatement::Print(std::ostream& os)
+{
+    os << "";
+}

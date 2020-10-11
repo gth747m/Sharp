@@ -11,6 +11,7 @@ public:
     IfStatement(std::unique_ptr<Expression>& condition, std::unique_ptr<Statement>&& thenBranch, std::unique_ptr<Statement>&& elseBranch);
     virtual ~IfStatement() = default;
 protected:
+    virtual void Print(std::ostream& os);
 private:
     std::unique_ptr<Expression> condition;
     std::unique_ptr<Statement> thenBranch;

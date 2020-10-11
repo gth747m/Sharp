@@ -23,6 +23,7 @@ add_executable (Sharp
 	"Sharp.cpp"  
 	"Literal.cpp" 
 	"Parser.cpp" 
+	"ParseException.cpp" 
 	"ScanException.cpp" 
 	"Scanner.cpp" 
 	"Token.cpp")

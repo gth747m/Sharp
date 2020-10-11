@@ -7,3 +7,8 @@ WhileStatement::WhileStatement(std::unique_ptr<Expression>&& condition, std::uni
     body(std::move(body))
 {
 }
+
+void WhileStatement::Print(std::ostream& os)
+{
+    os << "";
+}

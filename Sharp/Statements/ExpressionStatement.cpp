@@ -7,3 +7,8 @@ ExpressionStatement::ExpressionStatement(std::unique_ptr<Expression>&& expressio
     expression(std::move(expression))
 {
 }
+
+void ExpressionStatement::Print(std::ostream& os)
+{
+    os << "";
+}

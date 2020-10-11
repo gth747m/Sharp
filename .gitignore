@@ -35,6 +35,9 @@
 *.vcxproj
 *.vcxproj.filters
 
+# Visual Studio Code
+.vs
+
 # Output
 out/*
 .vs/*

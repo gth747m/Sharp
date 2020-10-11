@@ -9,5 +9,12 @@ FunctionStatement::FunctionStatement(Token&& name, std::vector<Token>&& params, 
 
 void FunctionStatement::Print(std::ostream& os)
 {
-    os << "";
+    os << "Function Statement:" << std::endl
+        << "    name = '" << this->name << "'" << std::endl
+        << "    params = {" << std::endl;
+    for (auto& param : this->params)
+    {
+        os << "    " << param << std::endl;
+    }
+    os << "}" << std::endl;
 }

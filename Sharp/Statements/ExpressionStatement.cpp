@@ -10,5 +10,8 @@ ExpressionStatement::ExpressionStatement(std::unique_ptr<Expression>&& expressio
 
 void ExpressionStatement::Print(std::ostream& os)
 {
-    os << "";
+    os << "Expression Statement:" << std::endl
+        << "    expr = {" << std::endl
+        << this->expression.get()
+        << "}" << std::endl;
 }

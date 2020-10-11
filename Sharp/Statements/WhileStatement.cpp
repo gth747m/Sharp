@@ -10,5 +10,11 @@ WhileStatement::WhileStatement(std::unique_ptr<Expression>&& condition, std::uni
 
 void WhileStatement::Print(std::ostream& os)
 {
-    os << "";
+    os << "While Statement:" << std::endl
+        << " cond = {" << std::endl
+        << this->condition.get()
+        << "}" << std::endl
+        << " body = {" << std::endl
+        << this-> body.get()
+        << "}" << std::endl;
 }

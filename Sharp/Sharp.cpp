@@ -19,7 +19,7 @@ int main()
     try 
     {
         std::stringstream ss2(ss.str());
-        for (Token& token : Scanner::GetTokens(ss))
+        for (auto& token : Scanner::GetTokens(ss))
         {
             std::cout << token << std::endl;
         }

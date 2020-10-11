@@ -9,7 +9,7 @@ VariableStatement::VariableStatement(Token type, Token name, std::unique_ptr<Exp
 
 void VariableStatement::Print(std::ostream& os)
 {
-    os << "Variable Declaration:" << std::endl
+    os << "Variable Statement:" << std::endl
         << "    type = '" << this->type << "'" << std::endl
         << "    name = '" << this->name << "'" << std::endl
         << "    init = {" << std::endl

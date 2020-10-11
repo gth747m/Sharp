@@ -10,3 +10,15 @@ LogicalExpression::LogicalExpression(std::unique_ptr<Expression>&& left, Token&&
 LogicalExpression::~LogicalExpression()
 {
 }
+
+void LogicalExpression::Print(std::ostream& os)
+{
+    os << "Literal Expression:" << std::endl
+        << "    left = {" << std::endl
+        << this->left.get()
+        << "}" << std::endl
+        << "    optr = " << this->optor <<std::endl
+        << "    rght = {" << std::endl
+        << this->right.get()
+        << "}" << std::endl;
+}

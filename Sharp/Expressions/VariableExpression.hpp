@@ -1,5 +1,7 @@
 #pragma once
 
+#include <ostream>
+
 #include "Expression.hpp"
 #include "../Token.hpp"
 
@@ -9,6 +11,7 @@ public:
     VariableExpression(Token&& name);
     virtual ~VariableExpression();
 protected:
+    virtual void Print(std::ostream& os) = 0;
 private:
     Token name;
 };

@@ -10,3 +10,15 @@ BinaryExpression::BinaryExpression(std::unique_ptr<Expression>&& left, Token&& o
 BinaryExpression::~BinaryExpression()
 {
 }
+
+void BinaryExpression::Print(std::ostream& os)
+{
+    os << "Binary Expression:" << std::endl
+        << "    left = {" << std::endl
+        << this->left.get()
+        << "}" << std::endl
+        << "    optr = " << this->optor << std::endl
+        << "    rght = {" << std::endl
+        << this->right.get()
+        << "}" << std::endl;
+}

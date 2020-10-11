@@ -8,3 +8,9 @@ VariableExpression::VariableExpression(Token&& name) :
 VariableExpression::~VariableExpression()
 {
 }
+
+void VariableExpression::Print(std::ostream& os)
+{
+    os << "Variable Expression:" << std::endl
+        << "    name = '" << this->name << "'" << std::endl;
+}

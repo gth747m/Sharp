@@ -11,5 +11,14 @@ IfStatement::IfStatement(std::unique_ptr<Expression>& condition, std::unique_ptr
 
 void IfStatement::Print(std::ostream& os)
 {
-    os << "";
+    os << "If Statement:"
+        << "    cond = {" << std::endl
+        << this->condition.get()
+        << "}" << std::endl
+        << "    then = {"
+        << this->thenBranch.get()
+        << "}" << std::endl
+        << "    else = {"
+        << this->elseBranch.get()
+        << "}" << std::endl;
 }

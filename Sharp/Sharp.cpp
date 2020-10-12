@@ -9,13 +9,7 @@
 int main()
 {
     std::stringstream ss;
-    ss << "#include \"stdio.h\"" << std::endl
-        << std::endl
-        << "int main(void)" << std::endl
-        << "{" << std::endl
-        << "    printf(\"Hello World!\\n\");" << std::endl
-        << "    return 0;" << std::endl
-        << "}" << std::endl;
+    ss << "int i = 0;" << std::endl;
     try 
     {
         std::stringstream ss2(ss.str());

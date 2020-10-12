@@ -163,7 +163,7 @@ std::unique_ptr<Statement> Parser::ParseWhile()
 
 std::unique_ptr<Statement> Parser::ParseVariable()
 {
-    Token type = this->Consume(TokenType::VARIABLE_TYPE);
+    Token type = *this->current++;
     Token name = this->Consume(TokenType::IDENTIFIER);
     this->Consume(TokenType::EQUAL);
     std::unique_ptr<Expression> init = this->ParseExpression();

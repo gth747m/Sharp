@@ -1,13 +1,22 @@
 #include "Scanner.hpp"
 
 #include <cctype>
+#include <cstring>
 #include <exception>
 #include <iostream>
 #include <map>
 
 #include "ScanException.hpp"
 
-static const std::map<const char *, TokenType> Keywords = 
+struct cmp_str
+{
+    bool operator()(const char* a, const char* b) const
+    {
+        return std::strcmp(a, b) < 0;
+    }
+};
+
+static const std::map<const char *, TokenType, cmp_str> Keywords = 
     {
         {"AND", TokenType::AND},
         {"CLASS", TokenType::CLASS},
@@ -22,8 +31,14 @@ static const std::map<const char *, TokenType> Keywords =
         {"SUPER", TokenType::SUPER},
         {"THIS", TokenType::THIS},
         {"TRUE", TokenType::TRUE},
-        {"VAR", TokenType::VAR},
         {"WHILE", TokenType::WHILE},
+        {"INT", TokenType::INT},
+        {"UINT", TokenType::UINT},
+        {"LONG", TokenType::LONG},
+        {"ULONG", TokenType::ULONG},
+        {"FLOAT", TokenType::FLOAT},
+        {"DOUBLE", TokenType::DOUBLE},
+        {"VAR", TokenType::VAR},
         {"VOID", TokenType::VOID}
     };
 
@@ -105,7 +120,7 @@ void Scanner::ScanIdentifier(char c)
     while (isalnum(currChar) || currChar == '_')
     {
         ssOrig << currChar;
-        ssUpper << toupper(currChar);
+        ssUpper << (char)toupper(currChar);
         currChar = Advance();
     }
     this->PutBack(currChar);

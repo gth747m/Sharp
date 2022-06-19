@@ -39,14 +39,11 @@
 .vscode
 
 # Output
-bin/*
-obj/*
+*/bin/*
+*/obj/*
 out/*
 .vs/*
 x64/*
-Sharp/Sharp.dir
-Sharp/Debug
-Sharp/Sharp
 
 # Make
 Makefile

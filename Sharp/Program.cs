@@ -47,5 +47,15 @@ namespace Sharp
         {
             Console.WriteLine(script);
         }
+
+        public static void Error(int line, string message)
+        {
+            Report(line, "", message);
+        }
+
+        public static void Report(int line, string where, string message)
+        {
+            Console.WriteLine("[line " + line + "] Error" + where + ": " + message);
+        }
     }
 }

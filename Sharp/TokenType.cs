@@ -2,17 +2,21 @@ namespace Sharp
 {
     public enum TokenType
     {
+        #region Separators
         LEFT_PAREN,
         RIGHT_PAREN,
         LEFT_BRACE,
         RIGHT_BRACE,
         COMMA,
+        SEMICOLON,
+        #endregion
+        #region Math
         DOT,
         MINUS,
         PLUS,
-        SEMICOLON,
         SLASH,
         STAR,
+        #endregion
         #region Comparison
         BANG,
         BANG_EQUAL,

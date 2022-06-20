@@ -9,7 +9,7 @@ namespace Sharp
             if (args.Length > 1)
             {
                 Console.WriteLine("Usage: Sharp [script]");
-                System.Environment.Exit(1);
+                Environment.Exit(1);
             }
             else if (args.Length == 1)
             {
